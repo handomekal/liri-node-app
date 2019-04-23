@@ -57,15 +57,15 @@ if (command == "movie-this") {
   var queryUrl = "http://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=trilogy";
   axios.get(queryUrl).then(
     function (response) {
-      console.log(response.data.Actors);
-      console.log(response.data.Title);
-      console.log(response.data.Year);
-      console.log(response.data.imdbRating);
+      console.log("Actors: " + response.data.Actors);
+      console.log("Title: " + response.data.Title);
+      console.log("Year: " + response.data.Year);
+      console.log("IMDB Rating: " + response.data.imdbRating);
 
-      console.log(response.data.Ratings[1].Value);
-      console.log(response.data.Country);
-      console.log(response.data.Language);
-      console.log(response.data.Plot);
+      console.log("Rotten Tomato Rating: " + response.data.Ratings[1].Value);
+      console.log("Country: " + response.data.Country);
+      console.log("Language: " + response.data.Language);
+      console.log("Plot: " + response.data.Plot);
     }
   )
 
