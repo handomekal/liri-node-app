@@ -106,8 +106,8 @@ if (command == "do-what-it-says") {
         var artists = data.tracks.items;
         for (var i = 0; i < artists.length; i++) {
           console.log("Artist: " + artists[i].album.artists[0].name);
-          console.log("Album: " + artists[i].album.name)
-          console.log("Song: " + value)
+          console.log("Album: " + artists[i].album.name);
+          console.log("Song: " + value);
           console.log("Spotify Url: " + artists[i].album.external_urls.spotify);
           console.log("\n\n");
         }
@@ -119,15 +119,16 @@ if (command == "do-what-it-says") {
       var queryUrl = "http://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=trilogy";
       axios.get(queryUrl).then(
         function (response) {
-          console.log(response.data.Actors);
-          console.log(response.data.Title);
-          console.log(response.data.Year);
-          console.log(response.data.imdbRating);
+          console.log("Actor: " + response.data.Actors);
+          console.log("Title: " + response.data.Title);
+          console.log("Year: " + response.data.Year);
+          console.log("IMDB Rating: " + response.data.imdbRating);
 
-          console.log(response.data.Ratings[1].Value);
-          console.log(response.data.Country);
-          console.log(response.data.Language);
-          console.log(response.data.Plot);
+          console.log("Rotten Tomato Rating: " + response.data.Ratings[1].Value);
+          console.log("Country: " + response.data.Country);
+          console.log("Language: " + response.data.Language);
+          console.log("Plot: " + response.data.Plot);
+          console.log("\n\n");
         }
       )
 
