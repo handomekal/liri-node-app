@@ -2,6 +2,7 @@ require("dotenv").config();
 var Spotify = require("node-spotify-api");
 var keys = require("./keys.js");
 var omdbApi = require("omdb-client");
+var fs = require("fs");
 
 //var spotify = new Spotify(keys.spotify);
 var axios = require("axios");
@@ -9,10 +10,10 @@ var spotify = new Spotify(keys.spotify);
 
 var command = process.argv[2];
 var value = process.argv[3];
-console.log(command);
-console.log(value);
-console.log(spotify);
-console.log(omdbApi);
+//console.log(command);
+//console.log(value);
+//console.log(spotify);
+//console.log(omdbApi);
 
 
 if (command == "concert-this") {
@@ -21,7 +22,15 @@ if (command == "concert-this") {
 
     axios.get(queryUrl).then(
         function (response) {
-            console.log(response.data[0].venue);
+          var shows = response.data;
+          for (var i = 0; i < shows.length; i++){
+
+          
+            console.log("venue name: " + shows[i].venue.name);
+            console.log("venue city: " + shows[i].venue.city);
+            console.log("date: " + shows[i].datetime);
+            console.log("\n\n");
+          }
         }
     );
 
@@ -33,7 +42,10 @@ if(command == "spotify-this-song") {
       return console.log('Error occurred: ' + err);
     }
    
-  console.log(data.tracks.items[0]); 
+  //console.log(data.tracks.items[0].album.artists[0].name); 
+  //console.log(data.tracks.items[0].album.name)
+  //console.log(value)
+  console.log(data.tracks.items[0].album.external_urls.spotify)
   });
   
 }
@@ -47,4 +59,9 @@ if(command == "movie-this") {
     )
 
     
+}
+if(command == "do-what-it-says") {
+  fs.readFile("random.txt", "utf8", function(error, data){
+    console.log(data);
+  })
 }
