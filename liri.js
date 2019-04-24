@@ -10,6 +10,7 @@ var spotify = new Spotify(keys.spotify);
 
 var command = process.argv[2];
 var value = process.argv[3];
+
 //console.log(command);
 //console.log(value);
 //console.log(spotify);
@@ -77,6 +78,8 @@ if (command == "do-what-it-says") {
     var dataArray = data.split(",");
     command = dataArray[0];
     value = dataArray[1];
+
+    fs.writeFile(log.txt, data);
 
     if (command == "concert-this") {
 
