@@ -1,10 +1,11 @@
+//These are the keys used to retrieve the information 
 require("dotenv").config();
 var Spotify = require("node-spotify-api");
 var keys = require("./keys.js");
 var omdbApi = require("omdb-client");
 var fs = require("fs");
 
-//var spotify = new Spotify(keys.spotify);
+//
 var axios = require("axios");
 var spotify = new Spotify(keys.spotify);
 
@@ -53,6 +54,7 @@ if (command == "spotify-this-song") {
   });
 
 }
+//this will e=search for rating,title,actors,country and language
 if (command == "movie-this") {
 
   var queryUrl = "http://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=trilogy";
@@ -72,6 +74,7 @@ if (command == "movie-this") {
 
 
 }
+//this will output data from random.txt file
 if (command == "do-what-it-says") {
   fs.readFile("random.txt", "utf8", function (error, data) {
     console.log(data);
@@ -80,7 +83,7 @@ if (command == "do-what-it-says") {
     value = dataArray[1];
 
     fs.writeFile(log.txt, data);
-
+    //this will search for concert venue,city,date of
     if (command == "concert-this") {
 
       var queryUrl = "https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp";
@@ -100,6 +103,7 @@ if (command == "do-what-it-says") {
       );
 
     }
+    //this will search spotify for the artist name,album,song, and url
     if (command == "spotify-this-song") {
 
       spotify.search({ type: 'track', query: value }, function (err, data) {
